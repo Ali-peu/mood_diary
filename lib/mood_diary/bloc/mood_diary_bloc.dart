@@ -53,6 +53,10 @@ class MoodDiaryBloc extends Bloc<MoodDiaryEvent, MoodDiaryState> {
 
     on<SaveAnswer>((event, emit) {
       emit(state.copyWith(screenStatus: ScreenStatus.success));
+      add(const SetInitialStatus());
+    });
+    on<SetInitialStatus>((event, emit) {
+      emit(state.copyWith(screenStatus: ScreenStatus.initial));
     });
   }
 }

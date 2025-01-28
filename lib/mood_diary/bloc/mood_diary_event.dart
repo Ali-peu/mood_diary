@@ -26,3 +26,8 @@ final class SetSelfAssessmentValue extends MoodDiaryEvent {
 final class SaveAnswer extends MoodDiaryEvent {
   const SaveAnswer();
 }
+
+
+final class SetInitialStatus extends MoodDiaryEvent {
+  const SetInitialStatus();
+}

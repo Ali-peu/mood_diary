@@ -32,8 +32,9 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(255, 253, 252, 1),
+      backgroundColor: const Color.fromRGBO(255, 253, 252, 1),
       appBar: AppBar(
+        backgroundColor: const Color.fromRGBO(255, 253, 252, 1),
         title: Text(getTodayDate()),
         centerTitle: true,
         actions: [
@@ -43,35 +44,59 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen>
       body: BlocBuilder<MoodDiaryBloc, MoodDiaryState>(
         builder: (context, state) {
           return Column(spacing: 8, children: [
-            TabBar(controller: tabController, tabs: [
-              Tab(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(Assets.calendar),
-                    const SizedBox(width: 10),
-                    const Text("Дневник "),
-                  ],
-                ),
-              ),
-              Tab(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SvgPicture.asset(Assets.static),
-                    const SizedBox(width: 10),
-                    const Text("Статистика"),
-                  ],
-                ),
-              ),
-            ]),
+            TabBar(
+                dividerColor: Colors.transparent,
+                indicatorSize: TabBarIndicatorSize.tab,
+                indicator: BoxDecoration(
+                    border: Border.all(width: 0.0001),
+                    borderRadius: BorderRadius.circular(50),
+                    color: const Color.fromRGBO(255, 135, 2, 1)),
+                tabAlignment: TabAlignment.center,
+                controller: tabController,
+                automaticIndicatorColorAdjustment: false,
+                tabs: [
+                  Tab(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: 10,
+                      children: [
+                        SvgPicture.asset(Assets.calendar),
+                        Text(
+                          "Дневник настроения",
+                          style: TextStyle(
+                              color: tabController.index == 0
+                                  ? Colors.white
+                                  : Colors.black12),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Tab(
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      spacing: 10,
+                      children: [
+                        SvgPicture.asset(Assets.static),
+                        Text("Статистика",
+                            style: TextStyle(
+                                color: tabController.index == 1
+                                    ? Colors.white
+                                    : Colors.black12)),
+                      ],
+                    ),
+                  ),
+                ]),
             Flexible(
               child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: tabController,
-                children: const [
-                  MoodDiaryForm(),
-                  ColoredBox(color: Colors.yellow),
+                children: [
+                  Padding(
+                    padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).viewInsets.bottom),
+                    child: const MoodDiaryForm(),
+                  ),
+                  const ColoredBox(color: Colors.yellow),
                 ],
               ),
             ),

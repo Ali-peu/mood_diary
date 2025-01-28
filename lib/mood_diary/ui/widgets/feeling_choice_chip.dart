@@ -65,7 +65,8 @@ class _FeelingChoiceChipState extends State<FeelingChoiceChip> {
                 ),
                 if (state.feelingType != null)
                   FormBuilderFilterChip<String>(
-                      decoration: InputDecoration(border: InputBorder.none),
+                      decoration:
+                          const InputDecoration(border: InputBorder.none),
                       showCheckmark: false,
                       selectedColor: const Color.fromRGBO(255, 135, 2, 1),
                       disabledColor: Colors.white,
@@ -73,6 +74,12 @@ class _FeelingChoiceChipState extends State<FeelingChoiceChip> {
                       spacing: 8,
                       side: BorderSide.none,
                       backgroundColor: Colors.white,
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Выберите поле';
+                        }
+                        return null;
+                      },
                       name: 'feelingTypes',
                       options: [
                         'Возбуждение',

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_form_builder/flutter_form_builder.dart';
 
 class MoodDiarySlider extends StatefulWidget {
   final String sliderLowValue;
@@ -54,11 +55,21 @@ class _MoodDiarySliderState extends State<MoodDiarySlider> {
                       disabledThumbColor: const Color.fromRGBO(255, 135, 2, 1),
                       valueIndicatorColor: const Color.fromRGBO(255, 135, 2, 1),
                     ),
-                    child: Slider(
-                        value: widget.value ?? 3,
+                    child: FormBuilderSlider(
+                        name: 'slider',
+                        initialValue: widget.value ?? 3,
+                        displayValues: DisplayValues.none,
+                        decoration:
+                            const InputDecoration(border: InputBorder.none),
+                        validator: (value) {
+                          if (value == null || widget.value == null) {
+                            return 'Выберите значение';
+                          }
+                          return null;
+                        },
                         min: 0.0,
                         max: 6,
-                        onChanged: widget.onChanged),
+                        onChanged: (value) => widget.onChanged),
                   ),
                 ],
               ),
