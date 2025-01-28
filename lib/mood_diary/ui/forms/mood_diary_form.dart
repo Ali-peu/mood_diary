@@ -22,23 +22,55 @@ class _MoodDiaryFormState extends State<MoodDiaryForm> {
           padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Form(
               key: _formKey,
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: ListView(
+                // mainAxisSize: MainAxisSize.min,
+                // mainAxisAlignment: MainAxisAlignment.start,
+                // crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const FormText(text: 'Что чувстуешь?'),
-                  const SizedBox(
-                      height: 80,
-                      width: double.infinity,
-                      child: ColoredBox(color: Colors.red)),
+                  const FeelingChoiceChip(),
                   const FormText(text: 'Уровень стресса'),
-                  Padding(
-                    padding: const EdgeInsets.all(8),
-                    child: SliderWithDividers(),
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: MoodDiarySlider(
+                      sliderLowValue: 'Низкий',
+                      sliderHightValue: 'Высокий',
+                    ),
                   ),
                   const FormText(text: 'Самооценка'),
+                  const Padding(
+                    padding: EdgeInsets.all(8),
+                    child: MoodDiarySlider(
+                      sliderLowValue: 'Неуверенность',
+                      sliderHightValue: 'Уверенность',
+                    ),
+                  ),
                   const FormText(text: 'Заметки'),
+                  DecoratedBox(
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(13),
+                        color: Colors.white,
+                        boxShadow: const [
+                          BoxShadow(color: Color.fromRGBO(182, 161, 192, 0.11)),
+                          BoxShadow(color: Color.fromRGBO(182, 161, 192, 0.11)),
+                          BoxShadow(color: Color.fromRGBO(182, 161, 192, 0.11)),
+                          BoxShadow(color: Color.fromRGBO(182, 161, 192, 0.11)),
+                        ]),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          border: InputBorder.none,
+                          hintText: 'Введите заметку',
+                          contentPadding: EdgeInsets.fromLTRB(6, 8, 2, 5),
+                          hintStyle: TextStyle(
+                              fontSize: 18,
+                              color: Color.fromRGBO(188, 188, 191, 1))),
+                      style: const TextStyle(
+                        decoration: TextDecoration.none,
+                        decorationThickness: 0,
+                      ),
+                      maxLines: 3,
+                    ),
+                  )
                 ],
               )),
         );

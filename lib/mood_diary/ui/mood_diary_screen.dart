@@ -32,6 +32,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(255, 253, 252, 1),
       appBar: AppBar(
         title: Text(getTodayDate()),
         centerTitle: true,
@@ -41,7 +42,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen>
       ),
       body: BlocBuilder<MoodDiaryBloc, MoodDiaryState>(
         builder: (context, state) {
-          return Column(children: [
+          return Column(spacing: 8, children: [
             TabBar(controller: tabController, tabs: [
               Tab(
                 child: Row(
@@ -64,7 +65,7 @@ class _MoodDiaryScreenState extends State<MoodDiaryScreen>
                 ),
               ),
             ]),
-            Expanded(
+            Flexible(
               child: TabBarView(
                 physics: const NeverScrollableScrollPhysics(),
                 controller: tabController,
