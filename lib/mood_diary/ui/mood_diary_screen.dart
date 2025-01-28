@@ -4,15 +4,16 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:mood_diary/configuration/assets.dart';
 import 'package:mood_diary/mood_diary/bloc/mood_diary_bloc.dart';
+import 'package:mood_diary/mood_diary/ui/forms/mood_diary_form.dart';
 
-class MoodDiaryForm extends StatefulWidget {
-  const MoodDiaryForm({super.key});
+class MoodDiaryScreen extends StatefulWidget {
+  const MoodDiaryScreen({super.key});
 
   @override
-  State<MoodDiaryForm> createState() => _MoodDiaryFormState();
+  State<MoodDiaryScreen> createState() => _MoodDiaryScreenState();
 }
 
-class _MoodDiaryFormState extends State<MoodDiaryForm>
+class _MoodDiaryScreenState extends State<MoodDiaryScreen>
     with TickerProviderStateMixin {
   late final TabController tabController;
 
@@ -43,13 +44,12 @@ class _MoodDiaryFormState extends State<MoodDiaryForm>
           return Column(children: [
             TabBar(controller: tabController, tabs: [
               Tab(
-                
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     SvgPicture.asset(Assets.calendar),
                     const SizedBox(width: 10),
-                    const Text("Дневник настроения"),
+                    const Text("Дневник "),
                   ],
                 ),
               ),
@@ -66,9 +66,10 @@ class _MoodDiaryFormState extends State<MoodDiaryForm>
             ]),
             Expanded(
               child: TabBarView(
+                physics: const NeverScrollableScrollPhysics(),
                 controller: tabController,
                 children: const [
-                  ColoredBox(color: Colors.red),
+                  MoodDiaryForm(),
                   ColoredBox(color: Colors.yellow),
                 ],
               ),
