@@ -44,33 +44,41 @@ class _MoodDiarySliderState extends State<MoodDiarySlider> {
                     ),
                   ),
                   SliderTheme(
-                    data: SliderTheme.of(context).copyWith(
-                      activeTrackColor: const Color.fromRGBO(255, 135, 2, 1),
-                      inactiveTrackColor:
-                          const Color.fromRGBO(225, 221, 216, 1),
-                      thumbShape: CustomSliderThumbShape(),
-                      // Радиус для выделенной области
-                      thumbColor: const Color.fromRGBO(
-                          255, 135, 2, 1), // Оранжевый цвет для центра
-                      disabledThumbColor: const Color.fromRGBO(255, 135, 2, 1),
-                      valueIndicatorColor: const Color.fromRGBO(255, 135, 2, 1),
-                    ),
-                    child: FormBuilderSlider(
-                        name: 'slider',
-                        initialValue: widget.value ?? 3,
-                        displayValues: DisplayValues.none,
-                        decoration:
-                            const InputDecoration(border: InputBorder.none),
-                        validator: (value) {
-                          if (value == null || widget.value == null) {
-                            return 'Выберите значение';
-                          }
-                          return null;
-                        },
-                        min: 0.0,
-                        max: 6,
-                        onChanged: (value) => widget.onChanged),
-                  ),
+                      data: SliderTheme.of(context).copyWith(
+                        activeTrackColor: const Color.fromRGBO(255, 135, 2, 1),
+                        inactiveTrackColor:
+                            const Color.fromRGBO(225, 221, 216, 1),
+                        thumbShape: CustomSliderThumbShape(),
+                        // Радиус для выделенной области
+                        thumbColor: const Color.fromRGBO(
+                            255, 135, 2, 1), // Оранжевый цвет для центра
+                        disabledThumbColor:
+                            const Color.fromRGBO(255, 135, 2, 1),
+                        valueIndicatorColor:
+                            const Color.fromRGBO(255, 135, 2, 1),
+                      ),
+                      child: FormBuilderSlider(
+                          name: 'slider',
+                          initialValue: widget.value ?? 3,
+                          displayValues: DisplayValues.none,
+                          decoration:
+                              const InputDecoration(border: InputBorder.none),
+                          validator: (value) {
+                            if (value == null) {
+                              return 'Выберите значение';
+                            }
+                            if (widget.value == null) {
+                              return 'Выберите значение';
+                            }
+                            return null;
+                          },
+                          min: 0.0,
+                          max: 6,
+                          onChanged: (value) {
+                            if (value != null) {
+                              widget.onChanged(value);
+                            }
+                          })),
                 ],
               ),
               Row(

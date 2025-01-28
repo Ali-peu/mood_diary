@@ -48,6 +48,8 @@ class _MoodDiaryFormState extends State<MoodDiaryForm> {
                   ),
                 );
               });
+
+          _formKey.currentState?.reset();
         }
       },
       child: BlocBuilder<MoodDiaryBloc, MoodDiaryState>(
