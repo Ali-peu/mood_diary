@@ -122,7 +122,7 @@ class _MoodDiaryFormState extends State<MoodDiaryForm> {
                             decoration: TextDecoration.none,
                             decorationThickness: 0,
                           ),
-                          maxLines: 3,
+                          maxLines: 4,
                         ),
                       ),
                     ),
