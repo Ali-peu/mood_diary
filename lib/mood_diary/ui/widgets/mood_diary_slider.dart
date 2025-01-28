@@ -3,19 +3,21 @@ import 'package:flutter/material.dart';
 class MoodDiarySlider extends StatefulWidget {
   final String sliderLowValue;
   final String sliderHightValue;
+  final double? value;
+  final void Function(double) onChanged;
 
   const MoodDiarySlider(
       {super.key,
       required this.sliderLowValue,
-      required this.sliderHightValue});
+      required this.sliderHightValue,
+      required this.value,
+      required this.onChanged});
 
   @override
   State<MoodDiarySlider> createState() => _MoodDiarySliderState();
 }
 
 class _MoodDiarySliderState extends State<MoodDiarySlider> {
-  double _sliderValue = 0.0;
-
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -53,15 +55,10 @@ class _MoodDiarySliderState extends State<MoodDiarySlider> {
                       valueIndicatorColor: const Color.fromRGBO(255, 135, 2, 1),
                     ),
                     child: Slider(
-                      value: _sliderValue,
-                      min: 0.0,
-                      max: 6,
-                      onChanged: (value) {
-                        setState(() {
-                          _sliderValue = value;
-                        });
-                      },
-                    ),
+                        value: widget.value ?? 3,
+                        min: 0.0,
+                        max: 6,
+                        onChanged: widget.onChanged),
                   ),
                 ],
               ),
